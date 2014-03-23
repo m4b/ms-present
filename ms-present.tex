@@ -190,19 +190,28 @@ For \emph n boolean variables, the size of a truth table is \(2^n\).
 \begin{enumerate}
 \item {\tiny Consider a boolean expression's truth table as an infinitely long, \emph{repeating} bit vector, e.g.: \(A \land B = \overline{1000}\) }
 \item {\tiny Define a coding for the \emph{i}th bit in a bit vector, \emph{b}: \( f(b_i) = \begin{cases} \frac{1}{2^{2i-1}} & \text{ if } b_i = 1\\ 0  & \text{ otherwise } \end{cases}\) where \emph{i} \(\geq\) 1 }
-\item {\tiny Define a geometric sum for a bit vector: }
+\item {\tiny Define a geometric sum for a bit vector, \emph b: }
   \[
-  \sum_{n=1}^\infty \frac{1}{2^{2n-1}}
+  \sum_{i=1}^\infty b_i \frac{1}{2^{2i-1}}
   \]
 \item {\tiny Then the real encoding for a boolean formula, \(\mathcal{F}\), with bit vector \(b\), is given by the following function:}
   \[
-  \mathcal{E}(\mathcal{F} = b) = \sum_{i=1}^\infty f(b_i) =  \sum_{n=1}^\infty \frac{1}{2^{2n-1}}
+  \mathcal{E}(\mathcal{F} = b) = \sum_{i=1}^\infty
+ f(b_i) = \sum_{i=1}^\infty \frac{b_i}{2^{2i-1}}
   \]
 \end{enumerate}
+
+
 
 \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
+
+\begin{comment}
+\begin{cases} 
+\frac{1}{2^{2i-1}} & \text{ if } b_i = 1\\ 0  & \text{ otherwise }
+ \end{cases}
+\end{comment}
 
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
@@ -229,12 +238,14 @@ For \emph n boolean variables, the size of a truth table is \(2^n\).
 \begin{block}
 {Sufficient to Encode Boolean Literals}
 
-We shall see that once we introduce an algebraic interpretation for boolean operators, it is sufficient to just encode boolean literals, i.e., \(A, B, C, D, \ldots\), and \emph{compute} the remaining fractional encodings for non-literal formulae.
+We shall see that once we introduce an algebraic interpretation for boolean operators, it is sufficient to just encode boolean literals, i.e., \(A, B, C, D, \ldots\), and \emph{compute} the remaining fractional encodings for non-literal formulae (if we so desire).
 
-An important formula for obtaining the \emph{n}th boolean literal's real encoding is given by:
+An important formula for obtaining the \emph{n}th boolean literal's encoding is given by:
 \[
 f(n) = \frac{2^{2^n}}{2^{2^n} + 1}
 \]
+
+where we index literals from 0, i.e.: \(n \geq 0\).
 
 \end{block}
 \end{frame}
