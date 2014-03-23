@@ -1,0 +1,297 @@
+\documentclass{beamer}
+
+\usefonttheme{professionalfonts}
+% \usepackage{unicode-math}
+
+%\usepackage{latexsym}
+%\usepackage{amsmath}
+%\usepackage{amsfonts}
+\usepackage{verbatim}
+\usepackage{graphicx}
+\usepackage{iwona}
+
+%%% xetex
+
+\usepackage{fontspec}
+\setmainfont[Ligatures=TeX]{Linux Libertine O}
+\newfontfamily\fallbackfont{Asana Math}
+%\setmonofont{Asana Math}
+\setmonofont{DejaVu Sans Mono}
+\usepackage{newunicodechar}
+
+
+%\usetheme{Amsterdam}
+%\usetheme{Madrid} 
+\usetheme{progressbar}
+%\usetheme{default}
+%\usetheme{Warsaw}
+%\usetheme{Bergen} % This template has nagivation on the left
+%\usetheme{Frankfurt} % Similar to the default 
+%with an extra region at the top.
+%\usecolortheme{seahorse} % Simple and clean template
+%\usetheme{Darmstadt} % not so good
+% Uncomment the following line if you want %
+% page numbers and using Warsaw theme%
+% \setbeamertemplate{footline}[page number]
+%\setbeamercovered{transparent}
+\setbeamercovered{invisible}
+% To remove the navigation symbols from 
+% the bottom of slides%
+\setbeamertemplate{navigation symbols}{} 
+%
+
+\progressbaroptions{imagename=logic.png}
+
+%\usepackage{bm}         % For typesetting bold math (not \mathbold)
+%\logo{\includegraphics[height=0.6cm]{yourlogo.eps}}
+%
+
+\title[Real Encodings]{Real Encodings of Boolean Formulas and their Algebraic Representation}
+\author{\textsc{M. Barney}}
+\institute[U of New Mexico]
+{
+University of New Mexico \\
+\medskip
+{\emph{mbunm12@cs.unm.edu}}
+}
+\date{\today}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Introduction}
+\begin{block}
+{Boolean Logic} 
+
+Boolean logic is the logic of ``true'' and ``false''.
+
+\begin{center}
+\begin{tabular}{|c|c|c|}\hline
+\(A\) & \( \land\) & \( B\) \\ \hline
+  1   &      1     &    1   \\ \hline
+  0   &      0     &    1   \\ \hline
+  1   &      0     &    0   \\ \hline
+  0   &      0     &    0   \\ \hline
+\end{tabular}
+\end{center}
+
+%\begin{center}
+%\includegraphics[width=0.25\textwidth]{imp.png}
+%\end{center}
+
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Applications}
+\begin{block}
+{SAT} 
+
+Determine if some arbitrary boolean formula, \(\mathcal{F}\), is satisfiable or not.
+
+\end{block}
+
+
+\begin{alertblock}
+{Satisfiability}
+A formula \(\mathcal{F}\) is satisfiable \textbf{iff} there exists some assignment of truth values, \(\mathcal{M}\), such that \(\mathcal{F}_{\mathcal{M}} \models \top\)
+\end{alertblock}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Example}
+\begin{exampleblock}
+{SAT, UNSAT} 
+
+\begin{itemize}
+\item \((A \rightarrow B)\) --- SAT
+\item \((((A \rightarrow B) \land A) \rightarrow B)\) --- SAT
+\item \((A \land \neg A)\) --- UNSAT
+\end{itemize}
+\end{exampleblock}
+
+\begin{alertblock}
+{Contradictions}
+
+A contradiction, \(\bot\), is any formula for which \emph{no} assignment of true and false can make the formula true.
+
+All contradictions are UNSAT.  
+
+Hence a formula \(\mathcal{F}\) is SAT \textbf{iff} \(\mathcal{F} \not \equiv \bot\) 
+\end{alertblock}
+
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Modern SAT Solvers}
+\begin{block}
+{DPLL} 
+
+Modern SAT solvers implement variations of the ``David-Putname-Loveland-Lockland'' ***CHECK NAME *** algorithm for determining satisfiability of a boolean expression.
+
+Modern implementations are very sophisticated, employing back-tracking, and other heuristics to speed up solver run times.
+
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{DPLL}
+\begin{alertblock}
+{Complete} 
+
+DPLL is ``complete'', that is, for any arbitrary boolean expression, it is guaranteed to terminate with a solution, SAT, or UNSAT.
+
+\end{alertblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Complexity}
+\begin{block}
+{Unfortunately \ldots} 
+
+Since SAT solving arbitrary boolean expressions will contain instances of 3-SAT problems, general SAT solving is NP-complete.
+
+In the worst case, DPLL, and other complete algorithms run in exponential time, as the method eventually devolves ***SPELLING*** to truth-table enumeration.
+
+For \emph n boolean variables, the size of a truth table is \(2^n\).
+
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}{small}
+\frametitle{My Method}
+\begin{block}
+{Real Encodings}
+
+********* CHANGE FONT SIZE
+
+\begin{enumerate}
+\item Consider a boolean expression's truth table as an infinitely long, \emph{repeating} bit vector, e.g.: \(A \land B = \overline{1000}\)
+\item Define a coding for \emph{i}th bit in a bit vector, \emph{b}: \(b_i = \frac{1}{2^{2n-1}}\)
+\item Define a geometric sum for a bit vector:
+  \[
+  \sum_{n=1}^\infty \frac{1}{2^{2n-1}}
+  \]
+\item the real encoding for a boolean formula, \(\mathcal{F}\), then is given by the following function:
+  \[
+  \mathcal{E}(\mathcal{F}) = \sum_{n=1}^\infty \frac{1}{2^{2n-1}}
+  \]
+\end{enumerate}
+
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{In Practice}
+\begin{exampleblock}
+{Example} 
+
+\begin{itemize}
+\item \(  \mathcal{E}(A  = \overline{10}) = \frac{2}{3} \)
+\item \(  \mathcal{E}(A \land B  = \overline{1000} ) = \frac{7}{8}\)
+\end{itemize}
+
+\end{exampleblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{}
+\begin{block}
+{} 
+
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Philosophe}
+\begin{block}
+{écrivain, et existentialiste}
+
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]
+\frametitle{Algos}
+\begin{block}
+{Concrete OCaml implementation}
+
+%\includegraphics[width=0.25\textwidth]{tableaux.png}
+
+\begin{center}
+\begin{verbatim}
+<αλγος> ((a \/ ~b) & ~a) -> ~b
+Parsed: (((a ∨ (¬b)) ∧ (¬a)) ⇒ (¬b))
+Variables(2): a b
+Algebraic form: (1 + ((−((a + ((1 + (−b)) +
+ (−(a × (1 + (−b)))))) × (1 + (−a)))) +
+ (((a + ((1 + (−b)) + (−(a × (1 + (−b)))))) ×
+ (1 + (−a))) × (1 + (−b)))))
+Algos reduced form: (1)
+\end{verbatim}
+\end{center}
+
+
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Mais}
+\begin{block}
+{je refuse!} 
+
+
+\begin{quote}
+``a writer should not allow himself to be turned into an institution'' --- \textsc{JP}
+\end{quote}
+
+
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+% End of slides
+%\begin{frame}
+%\frametitle{Bibliography}
+%\bibliographystyle{plain}
+%\bibliography{cs}
+%\end{frame}
+
+
+\end{document}
