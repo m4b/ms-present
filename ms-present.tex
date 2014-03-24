@@ -144,7 +144,7 @@ Hence a formula \(\mathcal{F}\) is SAT \textbf{iff} \(\mathcal{F} \not \equiv \b
 \begin{block}
 {DPLL} 
 
-Modern SAT solvers implement variations of the ``David-Putnam-Loveland-Lockland'' ***CHECK NAME *** algorithm for determining satisfiability of a boolean expression.
+Modern SAT solvers implement variations of the ``David-Putnam-Logemann-Loveland'' algorithm for determining satisfiability of a boolean expression.
 
 Modern implementations are very sophisticated, employing back-tracking, and other heuristics to speed up solver run times.
 
@@ -172,7 +172,7 @@ DPLL is \textbf{complete} --- that is, for any arbitrary boolean expression, it 
 
 Since SAT solving arbitrary boolean expressions will contain instances of 3-SAT problems, general SAT solving is NP-complete.
 
-In the worst case, DPLL, and other complete algorithms run in exponential time, as the method eventually devolves ***SPELLING*** to truth-table enumeration (``bit-blasting'').
+In the worst case, DPLL, and other complete algorithms run in exponential time, as the method eventually devolves to truth-table enumeration (``bit-blasting'').
 
 For \emph n boolean variables, the size of a truth table is \(2^n\).
 
@@ -185,7 +185,6 @@ For \emph n boolean variables, the size of a truth table is \(2^n\).
 \frametitle{My Method}
 \begin{block}
 {Real Encodings}
-
 
 \begin{enumerate}
 \item {\tiny Consider a boolean expression's truth table as an infinitely long, \emph{repeating} bit vector, e.g.: \(A \land B = \overline{1000}\) }
