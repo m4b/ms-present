@@ -214,9 +214,9 @@ For \emph n boolean variables, the size of a truth table is \(2^n\).
 
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{In Practice}
+\frametitle{Example Encodings}
 \begin{exampleblock}
-{Example} 
+{Some Example Encodings}
 
 \begin{itemize}
 \item \(  \mathcal{E}(A  = \overline{10}) = \frac{2}{3} \)
@@ -253,7 +253,7 @@ where we index literals from 0, i.e.: \(n \geq 0\).
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
 \frametitle{Algebraization}
-\begin{exampleblock}
+\begin{alertblock}
 {Algebraic Forms of the Boolean Operators}
 
 {\small
@@ -264,27 +264,38 @@ Neverthless, it is useful to see the resulting algebraic expressions for the var
 \begin{center}
 \begin{tabular}{ll}\hline
 Logical Form            & Algebraic Form\\
-\(\neg A\)              & 1 - a\\
-\(A \land B\)           & ab\\
-\(A \lor B\)            & a + b - ab\\
-\(A \Rightarrow B\)     & 1 - a + ab\\
-\(A \Leftrightarrow B\) & 1 - a - b + 2ab\\\hline
+\(\neg A\)              & \(1 - a\)\\
+\(A \land B\)           & \(ab\)\\
+\(A \lor B\)            & \(a + b - ab\)\\
+\(A \Rightarrow B\)     & \(1 - a + ab\)\\
+\(A \Leftrightarrow B\) & \(1 - a - b + 2ab\)\\\hline
 \end{tabular}
 \end{center}
 
 where \(a,b,c,\ldots\) are unique variables.
 
-\end{exampleblock}
+\end{alertblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{}
-\begin{block}
-{}
+\frametitle{Sample Encoding Derivation}
+\begin{exampleblock}
+{Sample Derivation}
 
-\end{block}
+As stated earlier, we can obtain the encoding for any arbitrary boolean formula by simply substituting the appropriate literal encoding in an algebraic expression.
+
+Given the logical formula \(A \lor B\):
+
+\begin{enumerate}
+\item \(a + b - ab \)
+\item \(\frac{2}{3} + \frac{4}{5} - \frac{2}{3} \frac{4}{5} \)
+\item \(\frac{22}{15} - \frac{8}{15} \)
+\item \(\frac{14}{15} \)
+\end{enumerate}
+
+\end{exampleblock}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 
