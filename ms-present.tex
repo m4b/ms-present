@@ -300,9 +300,20 @@ Given the logical formula \(A \lor B\):
 
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{}
+\frametitle{Equivalences}
 \begin{block}
-{}
+{Some Equivalences}
+
+\begin{equation}
+\begin{aligned}
+% \(\neg A\)              & \(1 - a\)\\
+\mathcal{E} (A \land B) =&\ \mathcal{E}(a)\mathcal{E}(b)\\
+\mathcal{E} (A \lor B) =&\ \mathcal{E}(a) + \mathcal{E}(b) - \mathcal{E}(a)\mathcal{E}(b)\\
+\mathcal{E} (A \Rightarrow B) =&\ 1 - \mathcal{E}(a) + \mathcal{E}(a)\mathcal{E}(b)\\
+\mathcal{E} (A \Leftrightarrow B) =&\ 1 - \mathcal{E}(a) - \mathcal{E}(b) + 2\mathcal{E}(a)\mathcal{E}(b)\\
+%\(A \Leftrightarrow B\) & \(1 - a - b + 2ab\)\\\hline
+\end{aligned}
+\end{equation}
 
 \end{block}
 \end{frame}
@@ -310,49 +321,20 @@ Given the logical formula \(A \lor B\):
 
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{}
+\frametitle{Recursive}
 \begin{block}
-{}
+{The equivalences are Recursive}
 
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%
+where \(\phi\), \(\psi\) are logical formula, and \(x,y\) is some algebraic expression, we can interpret the equivalences as recursive definitions:
 
-%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{}
-\begin{block}
-{}
-
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{}
-\begin{block}
-{}
-
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{}
-\begin{block}
-{}
-
-\end{block}
-\end{frame}
-%%%%%%%%%%%%%%%%%%%
-
-%%%%%%%%%%%%%%%%%%%
-\begin{frame}
-\frametitle{}
-\begin{block}
-{}
+\begin{equation}
+\begin{aligned}
+\mathcal{E} (\phi \land \psi) =&\ \mathcal{E}(x)\mathcal{E}(y)\\
+\mathcal{E} (\phi \lor \psi) =&\ \mathcal{E}(x) + \mathcal{E}(y) - \mathcal{E}(x)\mathcal{E}(y)\\
+\mathcal{E} (\phi \Rightarrow \psi) =&\ 1 - \mathcal{E}(x) + \mathcal{E}(x)\mathcal{E}(y)\\
+\mathcal{E} (\phi \Leftrightarrow \psi) =&\ 1 - \mathcal{E}(x) - \mathcal{E}(y) + 2\mathcal{E}(x)\mathcal{E}(y)\\
+\end{aligned}
+\end{equation}
 
 \end{block}
 \end{frame}
@@ -363,8 +345,6 @@ Given the logical formula \(A \lor B\):
 \frametitle{Algos}
 \begin{block}
 {Concrete OCaml implementation}
-
-%\includegraphics[width=0.25\textwidth]{tableaux.png}
 
 \begin{center}
 \begin{verbatim}
@@ -379,25 +359,98 @@ Algos reduced form: (1)
 \end{verbatim}
 \end{center}
 
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Further Research:}
+\begin{exampleblock}
+{Infinitely Long Expressions}
+
+Given a hypothetical formula:
+
+\[
+\bigwedge\limits_{n=0}^\infty x_n
+\]
+
+where \(x_0 = A\), \(x_1 = B\), etc.
+
+or:
+
+\[
+A \land B \land C \land D \ldots
+\]
+
+\end{exampleblock}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Algebraic Representation}
+\begin{block}
+{We Can Represent It}
+
+Recalling the formula for the \(n^{th}\) literal is:
+
+\[
+f(n) = \frac{2^{2^n}}{2^{2^n} + 1}
+\]
+
+then:
+
+\[
+\frac{1}{2} = \mathcal{E}\left (\bigwedge\limits_{n=0}^\infty x_n \right ) =  \prod_{n=0}^\infty \left ( \frac{2^{2^n}}{2^{2^n} + 1} \right ) = \frac{1}{2} \left ( \frac{4^{2^n}}{4^{2^n} - 1} \right )
+\]
 
 \end{block}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%
 
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{Unsolved Problems}
+\begin{alertblock}
+{The ``Even'' and ``Odd'' Products}
 
+Do the following products converge on some \emph x, such that \(x \in Q\)?
+
+\begin{equation}
+\begin{aligned}
+0.6274414 &\approx \prod_{n=0}^\infty \left ( \frac{2^{2^{2n}}}{2^{2^{2n}} + 1} \right )\\
+0.7968871 &\approx \prod_{n=0}^\infty \left ( \frac{2^{2^{2n+1}}}{2^{2^{2n+1}} + 1} \right )
+\end{aligned}
+\end{equation}
+
+\end{alertblock}
+
+\begin{block}
+{Conjecture}
+
+
+
+\end{block}
+
+\end{frame}
 %%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%
 \begin{frame}
-\frametitle{Mais}
+\frametitle{}
 \begin{block}
-{je refuse!} 
+{}
 
+\end{block}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%
 
-\begin{quote}
-``a writer should not allow himself to be turned into an institution'' --- \textsc{JP}
-\end{quote}
-
+%%%%%%%%%%%%%%%%%%%
+\begin{frame}
+\frametitle{}
+\begin{block}
+{}
 
 \end{block}
 \end{frame}
